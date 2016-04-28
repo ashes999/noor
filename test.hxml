@@ -1,0 +1,7 @@
+## Neko
+-main TestMain
+-lib munit
+-cp src
+
+-cp test
+-neko build/neko_test.n
