@@ -8,7 +8,7 @@ using Assert2;
 
 class FileSystemExtensionsTest
 {
-    private static inline var TEST_FILES_ROOT = "test/temp/fse";
+    private static inline var TEST_FILES_ROOT = "build/temp/fse";
     private static inline var TEST_FILES_DIR = '${TEST_FILES_ROOT}/filesystemext';
 
     @Before
@@ -20,11 +20,11 @@ class FileSystemExtensionsTest
     @After
     public function deleteTestFiles()
     {
-        FileSystem.deleteDirRecursively(TEST_FILES_ROOT);
+        FileSystem.deleteDirectoryRecursively(TEST_FILES_ROOT);
     }
     
     @Test
-    public function copyDirRecursivelyCopiesSubDirectoriesAndFiles()
+    public function copyDirectoryRecursivelyCopiesSubDirectoriesAndFiles()
     {
         // Set up a directory tree of files/folders to delete        
         var srcDir:String = '${TEST_FILES_ROOT}/source';
@@ -42,7 +42,7 @@ class FileSystemExtensionsTest
         
         // Copy directory and verify all files/folders copied over.
         var destDir = '${TEST_FILES_ROOT}/destDir1';
-        FileSystem.copyDirRecursively(srcDir, destDir);
+        FileSystem.copyDirectoryRecursively(srcDir, destDir);
         
         AssertDirExists(destDir);
         AssertDirExists('${destDir}/abc');
@@ -60,28 +60,28 @@ class FileSystemExtensionsTest
     }
     
     @Test
-    public function copyDirRecursivelyThrowsIfPathIsFile()
+    public function copyDirectoryRecursivelyThrowsIfPathIsFile()
     {
         File.saveContent('${TEST_FILES_ROOT}/hi', "this is a txt file, not a directory!");
         var message:String = Assert2.throws(String, function()
         {
-            FileSystem.copyDirRecursively('${TEST_FILES_ROOT}/hi', '${TEST_FILES_ROOT}/hee');
+            FileSystem.copyDirectoryRecursively('${TEST_FILES_ROOT}/hi', '${TEST_FILES_ROOT}/hee');
         });
         Assert.isTrue(message.indexOf("directory") > -1);
     }
     
     @Test
-    public function copyDirRecursivelyThrowsIfPathDoesntExist()
+    public function copyDirectoryRecursivelyThrowsIfPathDoesntExist()
     {
         var message:String = Assert2.throws(String, function()
         {
-            FileSystem.copyDirRecursively('${TEST_FILES_ROOT}/doesntexist', '${TEST_FILES_ROOT}');
+            FileSystem.copyDirectoryRecursively('${TEST_FILES_ROOT}/doesntexist', '${TEST_FILES_ROOT}');
         });
         Assert.isTrue(message.indexOf("exist") > -1);
     }
     
     @Test
-    public function deleteDirRecursivelyDeletesSubDirectoriesAndFiles()
+    public function deleteDirectoryRecursivelyDeletesSubDirectoriesAndFiles()
     {
         // Set up a directory tree of files/folders to delete        
         var srcDir:String = '${TEST_FILES_ROOT}/source';
@@ -98,7 +98,7 @@ class FileSystemExtensionsTest
         File.saveContent('${srcDir}/def/ghi/hi.txt', "ghi hi.txt");
         
         // Nuke directory and verify all files/folders disappeared.
-        FileSystem.deleteDirRecursively(srcDir);
+        FileSystem.deleteDirectoryRecursively(srcDir);
         
         Assert.isFalse(FileSystem.exists(srcDir));
         Assert.isFalse(FileSystem.exists('${srcDir}/abc'));
@@ -111,32 +111,32 @@ class FileSystemExtensionsTest
     }
     
     @Test
-    public function ensureDirExistsThrowsIfDirectoryDoesntExist()
+    public function ensureDirectoryExistsThrowsIfDirectoryDoesntExist()
     {
         var message:String = Assert2.throws(String, function()
         {
-            FileSystem.deleteDirRecursively('${TEST_FILES_ROOT}/a/b/c');
+            FileSystem.deleteDirectoryRecursively('${TEST_FILES_ROOT}/a/b/c');
         });
         Assert.isTrue(message.indexOf('exist') > -1);
     }   
     
     @Test
-    public function ensureDirExistsThrowsIfDirectoryIsAFile()
+    public function ensureDirectoryExistsThrowsIfDirectoryIsAFile()
     {
         File.saveContent('${TEST_FILES_ROOT}/a', "Text file, not a dir!");
         var message:String = Assert2.throws(String, function()
         {
-            FileSystem.deleteDirRecursively('${TEST_FILES_ROOT}/a');
+            FileSystem.deleteDirectoryRecursively('${TEST_FILES_ROOT}/a');
         });
         Assert.isTrue(message.indexOf('directory') > -1);
     }
     
     @Test
-    public function ensureDirExistsDoesntThrowIfDirectoryExists()
+    public function ensureDirectoryExistsDoesntThrowIfDirectoryExists()
     {
         var targetDir:String = '${TEST_FILES_ROOT}/empty';
         FileSystem.createDirectory(targetDir);
-        FileSystem.ensureDirExists(targetDir);
+        FileSystem.ensureDirectoryExists(targetDir);
     }
     
     @Test
