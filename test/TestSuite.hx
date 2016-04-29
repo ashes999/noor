@@ -1,6 +1,7 @@
 import massive.munit.TestSuite;
 
 import noor.ExceptionTest;
+import noor.StringExtensionsTest;
 import noor.io.FileSystemExtensionsTest;
 
 /**
@@ -16,6 +17,7 @@ class TestSuite extends massive.munit.TestSuite
 		super();
 
 		add(noor.ExceptionTest);
+		add(noor.StringExtensionsTest);
 		add(noor.io.FileSystemExtensionsTest);
 	}
 }

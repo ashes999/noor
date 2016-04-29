@@ -1,0 +1,13 @@
+{
+    "name": "noor",
+    "version": "0.1.0",
+    "releasenote": "Initial release",
+
+    "url": "https://github.com/ashes999/noor",
+    "description": "An expanded library for Haxe that brings many of the best parts of C# along.",
+    "tags": ["cross", "extension", "utility"],
+    "license": "MIT",    
+    "classPath": "src",
+    "contributors": ["ashes999"],
+    "dependencies": { }
+}
