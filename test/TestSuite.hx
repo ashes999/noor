@@ -3,6 +3,7 @@ import massive.munit.TestSuite;
 import noor.ExceptionTest;
 import noor.StringExtensionsTest;
 import noor.io.FileSystemExtensionsTest;
+import noor.io.ConfigReaderTest;
 
 /**
  * Auto generated Test Suite for MassiveUnit.
@@ -19,5 +20,6 @@ class TestSuite extends massive.munit.TestSuite
 		add(noor.ExceptionTest);
 		add(noor.StringExtensionsTest);
 		add(noor.io.FileSystemExtensionsTest);
+		add(noor.io.ConfigReaderTest);
 	}
 }
