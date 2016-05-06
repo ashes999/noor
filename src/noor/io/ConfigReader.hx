@@ -2,7 +2,6 @@ package noor.io;
 
 import haxe.Json;
 import noor.web.Request;
-import sys.io.File;
 
 /**
   Reads configuration from a JSON file and exposes it as parameters.
@@ -39,7 +38,7 @@ class ConfigReader {
             {
                 value = false;                
             }
-            else if (Std.parseFloat(raw) != null)
+            else if (Std.parseFloat(raw) != Math.NaN)
             {
                 value = Std.parseFloat(raw);
             }
