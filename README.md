@@ -45,7 +45,17 @@ Noor extends `sys.FileSystem` with several helpers. To use them, specify `using 
  - `FileSystem.ensureDirectoryExists(directory)`: Throws an exception if `directory` doesn't exist 
  - `FileSystem.getFiles(directory)`:
  - `FileSystem.recreateDirectory(directory)`: Deletes and re-creates `directory` if it exists; creates it if it doesn't exist
-  
+
+# Math extensions
+
+```
+using noor.MathExtensions;
+
+var n:Int = Math.randomBetween(10, 20); // 10 <= n < 20
+```
+
 # noor.web.Request
 
-Noor exposes a `getUrlParameters` method that returns a map of key/value pairs (`Map<String, String>`). This provides a way to access URL parameters across Neko, Flash, and Javascript.
+Noor exposes a `getUrlParameters` method that returns a map of key/value pairs (`Map<String, Dynamic>`). This provides a way to access URL parameters across Neko, Flash, and Javascript.
+
+eg. with a URL like `index.html?a=true&b=hello%20there!&c=71`, `getUrlParameters` returns `{ a => true, b => "hello there!", c => 71 }`
