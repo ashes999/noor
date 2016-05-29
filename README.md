@@ -42,9 +42,9 @@ Noor extends `sys.FileSystem` with several helpers. To use them, specify `using 
 
 - `FileSystem.copyDirectoryRecursively(source, destination)`: Creates the `destination` directory and copies `source` into it recursively.
 - `FileSystem.deleteDirectoryRecursively(directory)`: Deletes `directory` and all files/subfolders recursively
- - `FileSystem.ensureDirectoryExists(directory)`: Throws an exception if `directory` doesn't exist 
- - `FileSystem.getFiles(directory)`:
- - `FileSystem.recreateDirectory(directory)`: Deletes and re-creates `directory` if it exists; creates it if it doesn't exist
+- `FileSystem.ensureDirectoryExists(directory)`: Throws an exception if `directory` doesn't exist 
+- `FileSystem.getFiles(directory)`:
+- `FileSystem.recreateDirectory(directory)`: Deletes and re-creates `directory` if it exists; creates it if it doesn't exist
 
 # Math extensions
 
