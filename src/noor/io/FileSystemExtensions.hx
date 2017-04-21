@@ -44,14 +44,14 @@ class FileSystemExtensions
         var entries = FileSystem.readDirectory(path);
         for (entry in entries)
         {
-        if (FileSystem.isDirectory('${path}/${entry}'))
-        {
+            if (FileSystem.isDirectory('${path}/${entry}'))
+            {
                 FileSystem.deleteDirectoryRecursively('${path}/${entry}');
-        }
-        else
-        {
+            }
+            else
+            {
                 FileSystem.deleteFile('${path}/${entry}');
-        }
+            }
         }
         FileSystem.deleteDirectory(path);
         
@@ -83,7 +83,7 @@ class FileSystemExtensions
                 // Ignore .DS on Mac/OSX
                 if (entry.toUpperCase().indexOf(".DS") == -1 && !FileSystem.isDirectory(relativePath))
                 {
-                        toReturn.push(relativePath);
+                    toReturn.push(relativePath);
                 }
         }
         
@@ -99,6 +99,37 @@ class FileSystemExtensions
             FileSystem.deleteDirectoryRecursively(directory);
         }
         FileSystem.createDirectory(directory);
+    }
+
+    /** Get all files, recursively, under this directory. */
+    public static function getFilesRecursively(fs:Class<FileSystem>, srcPath:String) : Array<String>
+    {
+        var toReturn = new Array<String>();
+
+        if (!FileSystem.exists(srcPath))
+        {
+            return toReturn;
+        }
+        
+        if (FileSystem.isDirectory(srcPath))
+        {
+            var entries = FileSystem.readDirectory(srcPath);
+            for (entry in entries)
+            {
+                var files = FileSystem.getFilesRecursively('${srcPath}/${entry}');
+                for (f in files)
+                {
+                    toReturn.push(f);
+                }
+            }
+        }
+        else
+        {
+            // It's a file.
+            toReturn.push(srcPath);
+        }
+
+        return toReturn;
     }
     
     private static function validateDirectoryExists(path:String):Void
